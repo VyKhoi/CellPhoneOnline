@@ -1,0 +1,156 @@
+/* 
+* Design by Robert Mayer:https://goo.gl/CJ7yC8
+*
+*I intentionally left out the line that was supposed to be below the subheader simply because I don't like how it looks.
+*
+* Chronicle Display Roman font was substituted for similar fonts from Google Fonts.
+*/
+
+
+.wrapper.laptop_card {
+    height: 275px;
+    width: 555px;
+
+    border-radius: 7px 7px 7px 7px;
+    /* VIA CSS MATIC https://goo.gl/cIbnS */
+    -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 7px 20px 0px rgba(6, 97, 3, 0.299);
+}
+
+.laptop_card .product-img {
+    float: left;
+    height: 420px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* đặt chiều cao của container */
+}
+
+.laptop_card .product-img img {
+    border-radius: 7px 0 0 7px;
+    max-width: 100%;
+    /* đặt chiều rộng tối đa của hình ảnh */
+    height: auto;
+    /* giữ tỉ lệ khung hình */
+}
+
+.product-info.laptop_card_infor {
+    float: left;
+    height: 420px;
+    width: 327px;
+    border-radius: 0 7px 10px 7px;
+    background-color: #ffffff;
+}
+
+.laptop_card_infor .product-text {
+    height: 300px;
+    width: 327px;
+}
+
+.laptop_card_infor .product-text h1 {
+    margin-left: 10px;
+
+    font-size: 34px;
+    color: #474747;
+}
+
+.laptop_card_infor .product-text h1,
+.product-price-btn p {
+    font-family: 'Bentham', serif;
+}
+
+.laptop_card_infor .product-text h2 {
+    margin-left: 10px;
+    font-size: 13px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #41ff02;
+    letter-spacing: 0.2em;
+}
+
+.laptop_card_infor .product-text p {
+    height: 125px;
+    margin: 0 0 0 38px;
+    font-family: 'Playfair Display', serif;
+    color: #8d8d8d;
+    line-height: 1.7em;
+    font-size: 15px;
+    font-weight: lighter;
+    overflow: hidden;
+}
+
+.laptop_card_infor .product-price-btn {
+    height: 50px;
+    width: 327px;
+    margin-top: 17px;
+    position: relative;
+    top: -97px;
+    right: -42px;
+}
+
+.laptop_card_infor .product-price-btn p {
+    display: inline-block;
+    position: absolute;
+    top: -91px;
+    height: 50px;
+    font-family: 'Trocchi', serif;
+    margin: 47px 0 0 -28px;
+    font-size: 13px;
+    font-weight: lighter;
+    color: #474747;
+}
+
+.price_laptop_box p span {
+    font-size: 20px;
+}
+
+.previous_price {
+    text-decoration: line-through;
+}
+
+.sale_price_laptop {
+    color: red;
+}
+
+.container_discount.discount_laptop {
+    font-size: 10px;
+    display: inline-block;
+    padding: 5px;
+    /* margin: 0; */
+    height: 100%;
+}
+
+.laptop_card span {
+    display: inline-block;
+    height: 50px;
+    font-family: 'Suranna', serif;
+    font-size: 34px;
+}
+
+.laptop_card_infor .product-price-btn button {
+    float: right;
+    display: inline-block;
+    height: 50px;
+    width: 176px;
+    margin: 0 40px 0 16px;
+    box-sizing: border-box;
+    border: transparent;
+    border-radius: 60px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #ffffff;
+    background-color: #9cebd5;
+    cursor: pointer;
+    outline: none;
+}
+
+.laptop_card_infor .product-price-btn button:hover {
+    background-color: #79b0a1;
+}

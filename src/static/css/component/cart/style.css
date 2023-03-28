@@ -1,0 +1,93 @@
+.box_item_in_cart .name_product {
+    font-size: 14px;
+}
+
+
+.box_quantity_price {
+    display: flex;
+    /* background-color: rgb(255, 255, 255); */
+    width: 40%;
+
+    flex-direction: row;
+    align-items: center;
+}
+
+.item_in_cart .box_quantity_price h5 {
+    font-size: 14px;
+}
+
+.remove_item_card_in_cart {
+    font-size: 20px;
+    color: red;
+}
+
+.amount_item_in_cart {
+    display: flex;
+    margin-right: 32%;
+    vertical-align: middle;
+}
+
+.sum_price_item {
+    width: 130%;
+    margin-left: -50%;
+    font-size: 15px !important;
+}
+
+/* styel css của cart chức năng thanh toán*/
+.CardElement {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.CardElement:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.CardElement.invalid {
+    border-color: #dc3545;
+}
+
+.card-body.payment-box {
+    background: linear-gradient(to top, #04fff6, #0052fff0, #00ffd0);
+    /* background-color: #ff6500; */
+    color: rgb(242, 255, 1) !important;
+}
+
+.input-payment {
+    width: 100%;
+}
+
+.payment_button {
+    /* margin-top: 10px; */
+    margin-top: 48px;
+    margin-left: 33%;
+    padding: 10px;
+    color: white;
+}
+
+.payment_button.payment {
+    background-color: #0b3f8c;
+    margin-left: 40%;
+}
+
+.payment_button.vertry_payment {
+    background-color: rgb(6, 6, 81);
+    color: rgb(243, 255, 5);
+    margin-left: 32%;
+}
+
+.total_price {
+    /* text-align: center; */
+    padding-top: 20px;
+    font-size: 20px;
+}

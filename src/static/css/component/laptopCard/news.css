@@ -1,0 +1,13 @@
+.slick_carousel_laptopphone_card .laptop_card .product-img img {
+    height: 100% !important;
+}
+
+h1.news_title {
+    font-size: 25px !important;
+    padding-top: 16px;
+}
+
+.news_content {
+    color: black !important;
+    text-indent: 20px;
+}

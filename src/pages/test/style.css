@@ -1,0 +1,35 @@
+.CardElement {
+    border: 1px solid #c4c4c4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.CardElement:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #007bff;
+}
+
+.StripeElement--invalid {
+    border-color: #dc3545;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+button[type="submit"],
+button[type="submit"]:disabled,
+button {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

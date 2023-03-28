@@ -1,0 +1,56 @@
+.order-lookup-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.order-lookup-form {
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+}
+
+.order-lookup-input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+
+}
+
+.order-lookup-button {
+    padding: 10px;
+    background-color: #030303;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.order-lookup-button:hover {
+    background-color: #0062cc;
+}
+
+.order-list-container {
+    margin-top: 20px;
+}
+
+.order-item {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.order-item p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.titile_order_lookup {
+    text-align: center;
+}

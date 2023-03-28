@@ -1,0 +1,28 @@
+.container_log_cell_phone {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.log_cell_phone {
+    background-color: rgb(245 245 244);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100% !important;
+    padding: 0;
+}
+
+.log_cell_phone .card_cellphone {
+    margin: 10px;
+    background-color: rgb(255, 47, 0);
+}
+
+.slick_carousel_cellphone_card {
+    background-color: rgb(255, 228, 154);
+    width: 100%;
+}
+
+.carousel-box {
+    background-color: yellow;
+}

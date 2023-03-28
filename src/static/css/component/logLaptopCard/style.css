@@ -1,0 +1,34 @@
+.container_log_laptop {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+}
+
+.log_laptop {
+    background-color: rgb(251, 251, 249);
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 100% !important;
+    padding: 0;
+}
+
+.log_laptop .card_laptop {
+    margin: 10px;
+    background-color: rgb(255, 47, 0);
+}
+
+.slick_carousel_laptopphone_card {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+
+.carousel-box {
+    background-color: yellow;
+}
+
+.image_news{
+    height: 100% !important;
+}

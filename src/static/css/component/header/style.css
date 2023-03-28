@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+img {
+    width: 100%;
+    height: auto !important;
+    object-fit: cover !important;
+    background-color: rgb(254, 254, 254) !important;
+}
+
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+    max-width: 100% !important;
+}
+
+.contact {
+    color: white;
+}
+
+#logo_navbar {
+    color: rgb(254, 171, 4);
+}
+
+.contact:hover {
+    color: rgb(4, 4, 4);
+
+}
+
+.fa-phone:before {
+    color: white;
+}
+
+.main_header {
+    padding: 0 !important;
+    margin: 0;
+}
+
+.navbar_feature {
+
+
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 2px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+}
+
+/* css carousel  */
+.header_carousel {
+
+    /* padding-top: 20%; */
+    background-color: rgb(255, 255, 255);
+    height: 400px;
+    /* margin-top: -100px; */
+    overflow: hidden;
+    border-radius: 10px;
+
+}
+
+
+
+.menu_nav_header {
+    background-color: rgb(255, 255, 255);
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    z-index: 1000;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9999;
+
+
+
+    transition: opacity 0.5s ease-in-out;
+
+
+}
+
+#menu_nav_header.p_fixed {
+    position: fixed;
+    opacity: 1;
+}
+
+#menu_nav_header.p_relative {
+    position: relative;
+    opacity: 1;
+
+}
+
+.branch:hover .dropdown_menu {
+    display: block;
+}
+
+.dropdown_contain {
+    background-color: red;
+}
+
+.dropdown_menu {
+    list-style: none;
+    display: none;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 150%;
+    background-color: green;
+    z-index: 99999;
+}
+
+.dropdown_menu a {
+    display: block;
+    background-color: rgb(255, 248, 113);
+    color: black;
+}
+
+.dropdown_menu a:hover {
+    display: block;
+    background-color: rgb(255, 255, 255);
+    color: black;
+
+}
+
+.blur_login {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(17, 17, 18, 0.603);
+    z-index: 10000;
+}
+
+.blur_login .close_login {
+    color: #fbfbfb;
+    /* display: block; */
+    font-size: 30px;
+    position: relative;
+
+    float: right;
+    top: 5%;
+    right: 5%;
+    /* background-color: rgb(0, 0, 0);/ */
+}
+
+.nav-link:active {
+    background-color: red;
+    color: black !important;
+}
+
+.nav-link:visited {
+    background-color: red;
+    color: black !important;
+}
