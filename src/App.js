@@ -29,6 +29,8 @@ import { Elements } from "@stripe/react-stripe-js";
 // import CheckoutForm from "./pages/test/paymentIndent";
 import SucceedPage from "./pages/cart/succeed";
 import FalsePage from "./pages/cart/flasePage";
+import Chat from "./chat";
+
 const stripePromise = loadStripe(
   "pk_test_51Mm6CAJTSCX72rEN5WIHfvOYH1gdryjkcMjvkpsD3qXvXH61iMYBB0EnlsLZ3cM8ZgbSKaSgVEd1gVUpeXFfXtjM000UU5faQ7"
 );
@@ -100,6 +102,7 @@ function App() {
         <CartIcon count={count} />
       </Link>
 
+      <Chat></Chat>
       <Footer></Footer>
     </div>
   );
