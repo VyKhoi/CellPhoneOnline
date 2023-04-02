@@ -15,8 +15,7 @@ import { BranchContext } from "../../../branchSelect/BranchContext";
 import { SearchContext } from "../../../searchKeyWord/searchKeyWord";
 import { UserContext } from "../../../userLogin/userlogin";
 function Header() {
-  const { user, setUser } = useContext(UserContext)
-
+  const { user, setUser } = useContext(UserContext);
 
   const sticky = useRef(null);
   const branch = useRef(null);
@@ -89,15 +88,15 @@ function Header() {
     console.log("input value", value);
   }
 
-  function hienthiuser(){
-    console.log(user)
+  function hienthiuser() {
+    console.log(user);
 
-    console.log('user lay tu local',JSON.parse(localStorage.getItem('user')))
+    console.log("user lay tu local", JSON.parse(localStorage.getItem("user")));
   }
 
-  function logoutUser(){
-    localStorage.removeItem('user');
-    setUser("")
+  function logoutUser() {
+    localStorage.removeItem("user");
+    setUser("");
   }
   return (
     <section className="ftco-section main_header">
@@ -232,14 +231,6 @@ function Header() {
                           Cửa hàng 3
                         </a>
                       </li>
-                      {/* <li>
-                        <a
-                          href="#!"
-                          onClick={() => handleClickBranch(idbranch)}
-                        >
-                          Cửa hàng Nam mít
-                        </a>
-                      </li> */}
                     </ul>
                   </div>
                 </li>
@@ -253,22 +244,48 @@ function Header() {
                     TRA CỨU ĐƠN HÀNG
                   </Link>
                 </li>
-                {!user ? (<li className="nav-item" onClick={handleLogin}>
-                  <a href="#!" className="nav-link">
-                    ĐĂNG NHẬP
-                  </a></li>) :(<li className="nav-item">
-                  <a href="#!" className="nav-link">
-                    XIn Chào {user.name} 
-                  </a>
-                
-                  </li>) 
-                  }
-                 {user && <li  className="nav-item">
-                  <a  href="#!"  className="nav-link" onClick={logoutUser}>
-                    Đăng Xuất
-                  </a>
+
+                {/* {user.role_id == "manager" ? (
+                  <li className="nav-item">
+                    <Link to={"/"} className="nav-link">
+                      QUẢN TRỊ
+                    </Link>
                   </li>
-                  }
+                ) : null} */}
+
+                {!user ? (
+                  <li className="nav-item" onClick={handleLogin}>
+                    <a href="#!" className="nav-link">
+                      ĐĂNG NHẬP
+                    </a>
+                  </li>
+                ) : (
+                  <li className="nav-item user_function">
+                    <a href="#!" className="nav-link">
+                      <span style={{ marginLeft: "20px", marginTop: "-20px" }}>
+                        XIn Chào
+                      </span>{" "}
+                      {user.name}
+                    </a>
+                    <div className=" options_user_funtion_box">
+                      <ul className=" option_user_funtion">
+                        {user.role_id == "manager" ? (
+                          <li>
+                            <a href="#!">Quản trị hệ thống</a>
+                          </li>
+                        ) : null}
+                      </ul>
+                    </div>
+                  </li>
+                )}
+
+                {user && (
+                  <li className="nav-item">
+                    <a href="#!" className="nav-link" onClick={logoutUser}>
+                      Đăng Xuất
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

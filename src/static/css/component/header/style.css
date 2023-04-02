@@ -60,7 +60,7 @@ img {
 
     /* padding-top: 20%; */
     background-color: rgb(255, 255, 255);
-    height: 400px;
+    height: 600px;
     /* margin-top: -100px; */
     overflow: hidden;
     border-radius: 10px;
@@ -160,4 +160,42 @@ img {
 .nav-link:visited {
     background-color: red;
     color: black !important;
+}
+
+.user_function {
+    /* background-color: red; */
+}
+
+.user_function:hover .options_user_funtion_box {
+    display: block;
+}
+
+.options_user_funtion_box {
+    display: none;
+    z-index: 999999999;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    background-color: #26c63f;
+    width: 25%;
+
+}
+
+.option_user_funtion a {
+    display: block;
+    width: 100%;
+    background-color: rgb(255, 248, 113);
+    margin: 0;
+    padding: 7px;
+    color: black;
+}
+
+.option_user_funtion a:hover {
+    background-color: white;
+    color: black;
+}
+
+.option_user_funtion {
+    margin: 0;
+    padding: 0;
 }

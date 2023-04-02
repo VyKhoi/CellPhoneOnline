@@ -33,7 +33,7 @@
 }
 
 .Comments #post {
-    margin: 10px;
+
     padding: 6px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -45,6 +45,7 @@
     border-style: solid;
     border-radius: 13px;
     width: 50%;
+    margin-left: 27%;
 }
 
 .Comments body {
@@ -147,6 +148,7 @@ h4 {
     background-color: rgba(16, 46, 46, 0.973);
     border-radius: 5px;
     padding: 20px;
+    margin-left: -24%;
 }
 
 .Comments {
@@ -181,4 +183,48 @@ h4 {
 /* CSS cho phần còn lại của thanh trượt */
 ::-webkit-scrollbar-track {
     background-color: rgb(255, 255, 255);
+}
+
+.comment_box.comment_reply_box {
+    margin-left: 100px !important;
+    left: 50px;
+}
+
+.comment_container {
+    overflow-y: auto;
+    height: 639px;
+    width: 58%;
+    padding-right: 61px;
+}
+
+.reply_comment_icon {
+    background-color: black;
+    color: white;
+    float: right;
+
+    font-size: 1.3vw;
+    margin: 10px;
+}
+
+.box_input_reply {
+    padding: 0;
+    background-color: white;
+}
+
+.box_input_reply form {
+    margin: 0;
+}
+
+.box_input_reply form textarea {
+    width: 88%;
+    height: 90px;
+}
+
+.box_input_reply form button {
+    width: 12%;
+    height: 91px;
+    /* margin-top: 49px; */
+    position: absolute;
+    font-size: 1.8vw;
+    background-color: yellow;
 }

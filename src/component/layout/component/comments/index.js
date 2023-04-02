@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, Fragment } from "react";
 import "../../../../static/css/component/comments/style.css";
+import { UserContext } from "../../../userLogin/userlogin";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Swal from "sweetalert2";
 function Comments({ idProduct }) {
   const [comments, setComments] = useState([]);
   const iconColors = ["#00FF00", "#FFFFFF", "#FFFF00"];
+  const { user, setUser } = useContext(UserContext);
+  const [commentInput, setCommentInput] = useState(null);
+
   useEffect(() => {
     // http://localhost:3001/comments-product/${idProduct}
     fetch(`https://localhost:8000/home/comments/${idProduct}`)
@@ -16,16 +23,160 @@ function Comments({ idProduct }) {
 
   const colors = ["red", "white", "yellow"];
   let colorIndex = 0;
-  if (comments.length === 0) {
-    return null; // Hiển thị placeholder
+  // if (comments.length === 0) {
+  //   return null; // Hiển thị placeholder
+  // }
+
+  function handSubmitComment(event) {
+    event.preventDefault();
+    if (!commentInput) {
+      return;
+    }
+    console.log("oke  :", commentInput);
+    if (!user) {
+      console.log("khong co user");
+      alert("XIn vui lòng đăng nhập");
+    } else {
+      fetch(`https://localhost:8000/home/comment/${idProduct}/${user.id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contentComment: commentInput,
+          idProductId: idProduct,
+          idUserId: user.id,
+          idReply: null,
+        }),
+        mode: "cors",
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.id) {
+            fetch(`https://localhost:8000/home/comments/${idProduct}`)
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                setComments(data);
+                setCommentInput("");
+              })
+              .catch((error) => console.error(error))
+              .finally(() => scrollBottom());
+          }
+        })
+        .catch((error) => {});
+    }
   }
+
+  function handleInputChange(event) {
+    setCommentInput(event.target.value);
+  }
+
+  function scrollBottom() {
+    var elem = document.getElementById("data");
+    elem.scrollTop = elem.scrollHeight;
+  }
+
+  function handleReplyClick(event) {
+    var parent = event.target.parentNode;
+
+    var replyBoxes = document.querySelectorAll(".replyComment");
+
+    for (var i = 0; i < replyBoxes.length; i++) {
+      replyBoxes[i].style.display = "none";
+    }
+
+    var currentReplyBox = parent.nextElementSibling;
+
+    if (currentReplyBox.style.display === "block") {
+      currentReplyBox.style.display = "none";
+    } else {
+      currentReplyBox.style.display = "block";
+    }
+  }
+
+  function handleSubmitRelpy(event, idReply) {
+    event.preventDefault();
+    if (!commentInput) {
+      return;
+    }
+    console.log("oke  :", commentInput, idProduct, user.id, idReply);
+
+    fetch(`https://localhost:8000/home/comment/${idProduct}/${user.id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        contentComment: commentInput,
+        idProductId: idProduct,
+        idUserId: user.id,
+        idReply: idReply,
+      }),
+      mode: "cors",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.id) {
+          fetch(`https://localhost:8000/home/comments/${idProduct}`)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              setComments(data);
+              setCommentInput("");
+            })
+            .catch((error) => console.error(error))
+            .finally();
+        }
+      })
+      .catch((error) => {});
+  }
+
+  function handleDeleteClick(idComment) {
+    console.log("bạn xóa ", idComment);
+    Swal.fire({
+      title: "Bạn có chắc chắn muốn xóa comment này không?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Xóa",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://localhost:8000/home/delete/comment/${idComment}`, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            fetch(`https://localhost:8000/home/comments/${idProduct}`)
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+                setComments(data);
+                setCommentInput("");
+              })
+              .catch((error) => console.error(error))
+              .finally();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+    });
+  }
+  console.log("user đang co là ", user);
   return (
     <section className="Comments">
-      {/* <h1>{comments}</h1>
-      <h1>{comments.length}</h1>; */}
       <div className="container">
         <div className="row">
-          <div className="col-sm-5 col-md-6 col-12 pb-4">
+          <div
+            id="data"
+            className="col-sm-5 col-md-6 col-12 pb-4 comment_container"
+          >
             <h1>Comments</h1>
 
             {comments.map((comment, index) => {
@@ -33,17 +184,73 @@ function Comments({ idProduct }) {
               colorIndex++;
 
               return (
-                <div
-                  key={index}
-                  className="text-justify darker mt-4 float-right comment_box"
-                >
-                  <i
-                    class="fa-solid fa-user-astronaut icon_user_comment"
-                    style={{ color: iconColor }}
-                  ></i>
-                  <h4>{comment.userName}</h4>
-                  <br />
-                  <p>{comment.contentComment}</p>
+                <div>
+                  <div
+                    key={index}
+                    className="text-justify darker mt-4 float-right comment_box"
+                  >
+                    <i
+                      class="fa-solid fa-user-astronaut icon_user_comment"
+                      style={{ color: iconColor }}
+                    ></i>
+                    <h4>{comment.userName}</h4>
+                    <br />
+                    <p>{comment.contentComment}</p>
+
+                    {user && user.role_id === "manager" ? (
+                      <Fragment>
+                        <i
+                          className="fas fa-trash-alt reply_comment_icon"
+                          onClick={() => handleDeleteClick(comment.Id)}
+                        >
+                          Xóa
+                        </i>
+
+                        <i
+                          className="fas fa-comments reply_comment_icon"
+                          onClick={handleReplyClick}
+                        >
+                          Trả lời
+                        </i>
+                      </Fragment>
+                    ) : null}
+                  </div>
+
+                  {user.role_id == "manager" ? (
+                    <div
+                      className="text-justify darker mt-4 float-right comment_box comment_reply_box box_input_reply replyComment"
+                      style={{ padding: 0, display: "none" }}
+                    >
+                      <form
+                        onSubmit={(event, idReply) =>
+                          handleSubmitRelpy(event, comment.Id)
+                        }
+                      >
+                        <textarea
+                          value={commentInput}
+                          onChange={handleInputChange}
+                        ></textarea>
+                        <button type="submit">Gửi</button>
+                      </form>
+                    </div>
+                  ) : null}
+
+                  {comment.commentReply.map((cm, ix) => {
+                    return (
+                      <div
+                        key={ix}
+                        className="text-justify darker mt-4 float-right comment_box comment_reply_box"
+                      >
+                        <i
+                          class="fa-solid fa-user-astronaut icon_user_comment"
+                          style={{ color: iconColor }}
+                        ></i>
+                        <h4>{cm.userName}</h4>
+                        <br />
+                        <p>{cm.contentComment}</p>
+                      </div>
+                    );
+                  })}
                 </div>
               );
             })}
@@ -60,26 +267,11 @@ function Comments({ idProduct }) {
                   rows="5"
                   className="form-control"
                   style={{ backgroundColor: "black" }}
+                  onChange={handleInputChange}
+                  value={commentInput}
                 ></textarea>
               </div>
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="fullname"
-                  className="form-control"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  className="form-control"
-                />
-              </div>
+
               <div className="form-group">
                 <p className="text-secondary">
                   If you have a{" "}
@@ -101,7 +293,12 @@ function Comments({ idProduct }) {
                 </label>
               </div>
               <div className="form-group">
-                <button type="button" id="post" className="btn">
+                <button
+                  type="submit"
+                  id="post"
+                  className="btn"
+                  onClick={handSubmitComment}
+                >
                   Post Comment
                 </button>
               </div>

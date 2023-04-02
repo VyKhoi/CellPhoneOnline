@@ -23,6 +23,7 @@
     "react-sticky-box": "^2.0.0",
     "slick-carousel": "^1.8.1",
     "stripe": "^11.14.0",
+    "sweetalert2": "^11.7.3",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
