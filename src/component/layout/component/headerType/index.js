@@ -102,7 +102,7 @@ function HeaderType() {
               <div class="col">
                 <div class="small-box">
                   <a href="#">
-                    <img src="https://cdn2.cellphones.com.vn/690x300,webp,q10/https://dashboard.cellphones.com.vn/storage/fold-4-00241.png"></img>
+                    <img src="https://thumbs.dreamstime.com/z/modern-color-geometric-pattern-sale-banner-design-template-background-mobile-phone-mobile-clearance-sale-modern-173238101.jpg"></img>
                   </a>
                 </div>
               </div>

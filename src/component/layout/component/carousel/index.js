@@ -16,7 +16,7 @@ function MyCarousel() {
     },
   ];
   return (
-    <Carousel>
+    <Carousel interval={30000}>
       {items.map((item) => (
         <Carousel.Item key={item.caption}>
           <img className="d-block w-100" src={item.src} alt={item.caption} />

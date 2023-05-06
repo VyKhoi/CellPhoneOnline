@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 function CarouselHeaderType() {
   const items = [
     {
-      src: "https://img.freepik.com/premium-vector/paper-art-shopping-online-smartphone-new-buy-sale-promotion-pink-backgroud-banner-market_238174-244.jpg?w=1060",
+      src: "https://thumbs.dreamstime.com/z/modern-color-geometric-pattern-sale-banner-design-template-background-mobile-phone-mobile-clearance-sale-modern-173238101.jpg",
       caption: "Khai trương mùa hè tưng bừng khuyến mãi",
     },
     {
