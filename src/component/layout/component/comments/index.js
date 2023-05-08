@@ -203,14 +203,14 @@ function Comments({ idProduct }) {
                           className="fas fa-trash-alt reply_comment_icon"
                           onClick={() => handleDeleteClick(comment.Id)}
                         >
-                          Xóa
+                          delete
                         </i>
 
                         <i
                           className="fas fa-comments reply_comment_icon"
                           onClick={handleReplyClick}
                         >
-                          Trả lời
+                          reply
                         </i>
                       </Fragment>
                     ) : null}
