@@ -24,6 +24,9 @@ npm start
 When running the project, it will fetch data from the backend project that is currently running.
 
 # Preview
+
+Video Demo : https://www.youtube.com/watch?v=-vwe2FJT6mM
+
 1 : Customer interface upon access
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/89650460/236769868-c88229b3-b4b9-4250-96f4-66483084f83b.png">
 
