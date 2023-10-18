@@ -5,13 +5,8 @@ import CountContext from "../../../counterCart/countContext";
 import CartContext from "../../../cart/CartContext";
 import { TypeOfProductContext } from "../../../typeOfProduct/context";
 function CellPhoneCard({ product }) {
-  // const { typeOfProduct, handleSetTypeOfProduct } =
-  //   useContext(TypeOfProductContext);
-  // const handleClick = () => {
-  //   handleSetTypeOfProduct(1);
-  // };
+ 
 
-  // console.log("product truyen vao", product.name);
   const click = useRef(null);
   useEffect(() => {
     if (click.current) {
@@ -24,11 +19,8 @@ function CellPhoneCard({ product }) {
   const { cartItems, removeFromCart, addToCart } = useContext(CartContext);
 
   function Clicked() {
-    // click.current.classList.add("clicked");
-    // addToCart({ ...product });
-    // console.log("san pham trong cart la", cartItems);
-    // setCount(count + 1);
-
+  
+    console.log("san pham vo card",{ ...product })
     click.current.classList.add("clicked");
     addToCart({ ...product });
     console.log("san pham trong cart la", cartItems);
@@ -130,23 +122,23 @@ function CellPhoneCard({ product }) {
             </tr>
             <tr>
               <td>CPU</td>
-              <td>{product.CPU}</td>
+              <td>{product.cpu}</td>
             </tr>
             <tr>
               <th>RAM</th>
-              <th>{product.RAM}</th>
+              <th>{product.ram}</th>
             </tr>
             <tr>
               <td>ROM</td>
-              <td>{product.ROM}</td>
+              <td>{product.rom}</td>
             </tr>
             <tr>
               <th>Battery</th>
-              <th>{product.Battery}</th>
+              <th>{product.battery}</th>
             </tr>
             <tr>
               <td>Others</td>
-              <td>{product.Others}</td>
+              <td>{product.others}</td>
             </tr>
           </table>
         </div>

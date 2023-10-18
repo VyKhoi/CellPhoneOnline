@@ -11,14 +11,25 @@ function HomeBodyProductCellPhone() {
   const [listPhones, setListPhones] = useState([]);
   const { branchID, setBranchID } = useContext(BranchContext);
   const [listTotalPhones, setListTotalPhones] = useState([]);
-
+  var requestDataPhone = {
+    pageSize: 100,
+    pageIndex: 0,
+    type: 0,
+    branchId: branchID,
+  };
   useEffect(() => {
     // `http://localhost:3001/Smartphone?Brach=${defaultBrach}`
-    fetch(`https://localhost:8000/home/branch/${branchID}/phones`)
+    fetch(`https://localhost:7242/product/search/promotion`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestDataPhone),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("no co chay vo ham lay dât", data);
-        setListPhones(data);
+        setListPhones(data.data[0]);
         console.log("no co chay lay lai hang cua cua hang", branchID);
       })
       .catch((error) => {
@@ -28,15 +39,21 @@ function HomeBodyProductCellPhone() {
 
   useEffect(() => {
     // `http://localhost:3001/Smartphone?Brach=${defaultBrach}`
-    fetch(`https://localhost:8000/home/branch/${branchID}/total-phones`)
+    fetch(`https://localhost:7242/product/search`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestDataPhone),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("no co chay vo ham lay dât", data);
 
         console.log("no co chay lay lai hang cua cua hang", branchID);
-        const updatedListTotalPhones = data.map((totalPhone) => {
+        const updatedListTotalPhones = data.data.items.map((totalPhone) => {
           const phoneIndex = listPhones.findIndex(
-            (phone) => phone.id_product_color === totalPhone.id_product_color
+            (phone) => phone.productColorId === totalPhone.productColorId
           );
           if (phoneIndex !== -1) {
             // Tìm thấy sản phẩm trong listPhones, cập nhật các thuộc tính của sản phẩm

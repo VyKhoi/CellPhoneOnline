@@ -21,7 +21,7 @@ function Login({ myref }) {
     console.log({ username, password });
 
     event.preventDefault();
-    fetch("https://localhost:8000/home/login/", {
+    fetch("https://localhost:7242/api/v1/auth/login/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,10 +32,14 @@ function Login({ myref }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("dât fetch dc", data);
-        let user_curent = JSON.parse(data.user); //dôi tuong
-        console.log(user_curent, "concac");
-        localStorage.setItem("user", JSON.stringify(user_curent)); // luu vao local json
+        
+        console.log("data",data)
+
+        let user_curent = data.data; //dôi tuong
+        
+        console.log("JSON.parse(",data.data)
+
+        localStorage.setItem("user", JSON.stringify(data.data)); // luu vao local json
         setUser(user_curent);
 
         console.log("user trong context ", user);

@@ -12,11 +12,23 @@ function HomeBodyProductLaptop() {
   const { branchID, setBranchID } = useContext(BranchContext);
   const [listTotalLaptops, setListTotalLaptops] = useState([]);
   // lay danh sách khuyen mãi
+  var requestDataLapTop = {
+    pageSize: 100,
+    pageIndex: 0,
+    type: 1,
+    branchId: branchID,
+  };
   useEffect(() => {
-    fetch(`https://localhost:8000/home/branch/${branchID}/laptops`)
+    fetch(`https://localhost:7242/product/search/promotion`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestDataLapTop),
+    })
       .then((response) => response.json())
       .then((data) => {
-        setListLaptops(data);
+        setListLaptops(data.data[0]);
       })
       .catch((error) => {
         console.error(error);
@@ -25,15 +37,21 @@ function HomeBodyProductLaptop() {
 
   useEffect(() => {
     // `http://localhost:3001/Smartphone?Brach=${defaultBrach}`
-    fetch(`https://localhost:8000/home/branch/${branchID}/total-laptops`)
+    fetch(`https://localhost:7242/product/search`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestDataLapTop),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("no co chay vo ham lay dât", data);
 
         console.log("no co chay lay lai hang cua cua hang", branchID);
-        const updatedListTotalLaptops = data.map((totalPhone) => {
+        const updatedListTotalLaptops = data.data.items.map((totalPhone) => {
           const laptopIndex = listLaptops.findIndex(
-            (phone) => phone.id_product_color === totalPhone.id_product_color
+            (phone) => phone.productColorId === totalPhone.productColorId
           );
           if (laptopIndex !== -1) {
             // Tìm thấy sản phẩm trong listPhones, cập nhật các thuộc tính của sản phẩm
@@ -56,11 +74,11 @@ function HomeBodyProductLaptop() {
     <div className="container_body_content_page">
       <HeaderType></HeaderType>
       <hr></hr>
-      <h1>Danh sách Laptop bán chạy</h1>
+      <h1>Danh sách Laptop bán chạy !</h1>
       <hr></hr>
       {listLaptops && <LogLaptopCard listLaptop={listLaptops}></LogLaptopCard>}
       <hr></hr>
-      <h1>Danh sách Laptop</h1>
+      <h1>Danh sách Laptop !</h1>
       <hr></hr>
       {listTotalLaptops && (
         <LogLaptopCard listLaptop={listTotalLaptops}></LogLaptopCard>

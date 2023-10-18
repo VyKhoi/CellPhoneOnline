@@ -13,26 +13,50 @@ function Search({ keySearch }) {
   const [listProduct, setListProduct] = useState([]);
   const { from_price, to_price, type_product } = useParams();
 
+  var requestSearchName = {
+    search: search,
+    branchId: branchID
+  };
+  var requestSearchPrice = {
+      type: type_product,
+      branchId: branchID,
+      priceFrom: from_price,
+      priceTo: to_price
+    
+  };
+
+
   if (from_price && to_price) {
     useEffect(() => {
-      fetch(
-        `https://localhost:8000/home/branch/${branchID}/search-price/${from_price}/${to_price}/${type_product}`
-      )
+      fetch(`https://localhost:7242/product/search/price`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestSearchPrice),
+        })
         .then((response) => response.json())
         .then((data) => {
-          setListProduct(data);
+          setListProduct(data.data);
         })
         .catch((error) => {
           console.error(error);
         });
     }, [branchID, search]);
-  } else {
+  } else {  
     if (search) {
       useEffect(() => {
-        fetch(`https://localhost:8000/home/branch/${branchID}/search/${search}`)
+        fetch(`https://localhost:7242/product/search/name`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestSearchName),
+        })
           .then((response) => response.json())
           .then((data) => {
-            setListProduct(data);
+            setListProduct(data.data);
+            console.log(data.data)
           })
           .catch((error) => {
             console.error(error);

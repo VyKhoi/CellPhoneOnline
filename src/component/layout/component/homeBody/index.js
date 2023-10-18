@@ -16,25 +16,50 @@ function HomeBody() {
   const [listPhones, setListPhones] = useState([]);
 
   // thay "brand" bằng giá trị mặc định của defaultBrach
-
+  var requestDataLapTop = {
+    pageSize: 100,
+    pageIndex: 0,
+    type: 1,
+    branchId: branchID,
+  };
+  var requestDataPhone = {
+    pageSize: 100,
+    pageIndex: 0,
+    type: 0,
+    branchId: branchID,
+  };
   useEffect(() => {
-    fetch(`https://localhost:8000/home/branch/${branchID}/laptops`)
+    fetch(`https://localhost:7242/product/search/promotion`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestDataLapTop),
+    })
       .then((response) => response.json())
       .then((data) => {
-        setListLaptop(data);
+        setListLaptop(data.data[0]);
+        console.log("có gọi lấy data",data)
       })
       .catch((error) => {
-        console.error(error);
+        console.error("lỗi rồi",error);
       });
   }, [branchID]);
 
   useEffect(() => {
     // `http://localhost:3001/Smartphone?Brach=${defaultBrach}`
-    fetch(`https://localhost:8000/home/branch/${branchID}/phones`)
+    //https://localhost:8000/home/branch/${branchID}/phones
+    fetch(`https://localhost:7242/product/search/promotion`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestDataPhone),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("no co chay vo ham lay dât", data);
-        setListPhones(data);
+        setListPhones(data.data[0]);
         console.log("no co chay lay lai hang cua cua hang", branchID);
       })
       .catch((error) => {

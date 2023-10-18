@@ -85,15 +85,28 @@ function Detail_Of_Product() {
     setSelectedColor(color);
     setCurrentProductColor(idProductColor);
   };
-
+  var request = {
+    
+      id: id,
+      branchId : branchID,
+      
+    }
+  
   useEffect(() => {
-    fetch(`https://localhost:8000/home/branch/${branchID}/product/${id}/`)
+    fetch(`https://localhost:7242/product/detail`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    })
       .then((response) => response.json())
       .then((data) => {
-        console.log("no co lay detail product", data[0]);
-        setProduct(data[0]);
-        setSelectedColor(data[0].color[0]);
-        setSelectedImage(data[0].image[0]);
+        console.log("no co lay detail product", data.data[0]);
+        var rp = data.data[0]
+        setProduct(rp[0]);
+        setSelectedColor(rp[0].color[0]);
+        setSelectedImage(rp[0].image[0]);
 
         // setList_Id_product_color((prevList) => {
         //   const newIds = data.map((value) => value["id_product_color"]);
@@ -330,12 +343,12 @@ function Detail_Of_Product() {
                         product.options.length > 0 &&
                         product.options.map((value, index) => {
                           return (
-                            <Link to={`/product/${value.idProduct}`}>
+                            <Link to={`/product/${value.productId}`}>
                               <button
                                 className="btn btn-primary btn-sm option_product"
                                 key={index}
                                 style={
-                                  value.idProduct === product.id
+                                  value.productId === product.id
                                     ? { backgroundColor: "red" }
                                     : {}
                                 }
@@ -649,73 +662,73 @@ function Detail_Of_Product() {
                 <tbody>
                   <tr className="row mt-10">
                     <td className="col-md-4">
-                      {product.nameManufacture && (
+                      {product.manufactureName && (
                         <span className="p_specification">Manufacture</span>
                       )}
                     </td>
                     <td className="col-md-8">
                       <ul>
-                        <li>{product.nameManufacture}</li>
+                        <li>{product.manufactureName}</li>
                       </ul>
                     </td>
                   </tr>
                   <tr className="row mt-10">
                     <td className="col-md-4">
-                      {product.CPU && (
+                      {product.cpu && (
                         <span className="p_specification">CPU</span>
                       )}
                     </td>
                     <td className="col-md-8">
                       <ul>
-                        <li> {product.CPU} </li>
+                        <li> {product.cpu} </li>
                       </ul>
                     </td>
                   </tr>
                   <tr className="row mt-10">
                     <td className="col-md-4">
-                      {product.RAM && (
+                      {product.ram && (
                         <span className="p_specification">RAM</span>
                       )}
                     </td>
                     <td className="col-md-8">
                       <ul>
-                        <li>{product.RAM}</li>
+                        <li>{product.ram}</li>
                       </ul>
                     </td>
                   </tr>
                   <tr className="row mt-10">
                     <td className="col-md-4">
-                      {product.ROM && (
+                      {product.rom && (
                         <span className="p_specification">ROM</span>
                       )}
                     </td>
                     <td className="col-md-8">
                       <ul>
-                        <li>{product.ROM}</li>
+                        <li>{product.rom}</li>
                       </ul>
                     </td>
                   </tr>
                   <tr className="row mt-10">
                     <td className="col-md-4">
-                      {product.Graphic_Card && (
+                      {product.graphicCard && (
                         <span className="p_specification">Graphic Card</span>
                       )}
                     </td>
                     <td className="col-md-8">
                       <ul>
-                        <li>{product.Graphic_Card}</li>
+                        <li>{product.graphicCard}</li>
                       </ul>
                     </td>
                   </tr>
                   <tr className="row mt-10">
                     <td className="col-md-4">
-                      {product.Battery && (
+                      {product.battery && (
                         <span className="p_specification">Battery</span>
                       )}
                     </td>
                     <td className="col-md-8">
                       <ul>
-                        <li>{product.Battery}</li>
+                        <li>{product.battery}</li>
                       </ul>
                     </td>
                   </tr>
@@ -733,13 +746,13 @@ function Detail_Of_Product() {
                   </tr>
                   <tr className="row mt-10">
                     <td className="col-md-4">
-                      {product.Others && (
+                      {product.others && (
                         <span className="p_specification">Others</span>
                       )}
                     </td>
                     <td className="col-md-8">
                       <ul>
-                        <li>{product.Others}</li>
+                        <li>{product.others}</li>
                       </ul>
                     </td>
                   </tr>

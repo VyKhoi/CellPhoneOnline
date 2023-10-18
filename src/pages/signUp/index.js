@@ -55,7 +55,7 @@ function SignUp() {
         alert("Vui lòng nhập CAPTCHA");
       } else {
         axios
-          .post("https://localhost:8000/home/register/", user)
+          .post("https://localhost:7242/api/v1/auth/create/", user)
           .then((response) => {
             const data = response.data;
             if (data.status === false) {
@@ -78,7 +78,7 @@ function SignUp() {
       <div>
         <img
           className="signup"
-          src="https://cellphones.com.vn/smember/_nuxt/img/Shipper_CPS3.0251fdd.png"
+          src="https://account.cellphones.com.vn/_nuxt/img/Shipper_CPS3.77d4065.png"
           alt="A beautiful image"
         />
       </div>
@@ -95,7 +95,7 @@ function SignUp() {
             required
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label for="username">Username:</label>
           <input
             type="text"
@@ -109,7 +109,7 @@ function SignUp() {
             maxLength={15}
             required
           />
-        </div>
+        </div> */}
         <div className="form-wrapper">
           <label for="email">Email:</label>
           <input

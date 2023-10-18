@@ -54,7 +54,7 @@ function Cart() {
   // xu ly tang giam so luong
   const increaseQuantity = (product) => {
     const sameProductColors = cartItems.filter(
-      (item) => item.id_product_color === product.id_product_color
+      (item) => item.productColorId === product.productColorId
     );
     if (sameProductColors.length > 0) {
       const lowestPriceProduct = sameProductColors.reduce((prev, current) =>
@@ -80,7 +80,7 @@ function Cart() {
     const updatedCartItems = cartItems.filter((item) => {
       if (
         !removed &&
-        item.id_branch_product_color === product.id_branch_product_color
+        item.branchProductColorId === product.branchProductColorId
       ) {
         removed = true;
         return false;
@@ -90,7 +90,7 @@ function Cart() {
 
     // Sắp xếp lại mảng sản phẩm trong giỏ hàng
     updatedCartItems.sort(
-      (a, b) => a.id_branch_product_color - b.id_branch_product_color
+      (a, b) => a.branchProductColorId - b.branchProductColorId
     );
 
     setCartItems(updatedCartItems);
@@ -104,10 +104,10 @@ function Cart() {
     return price;
   }
 
-  function totalPriceProduct(id_product_color) {
+  function totalPriceProduct(productColorId) {
     let price = 0;
     cartItems.forEach((product) => {
-      if (product.id_product_color == id_product_color) {
+      if (product.productColorId == productColorId) {
         price += parseFloat(product.currentPrice);
       }
     });
@@ -131,7 +131,7 @@ function Cart() {
     if (!error) {
       setIsLoading(true);
       console.log("no có nhảy vào if");
-      const response = await fetch("https://localhost:8000/home/checkout2", {
+      const response = await fetch("https://localhost:7242/order/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -148,7 +148,9 @@ function Cart() {
       });
       setIsLoading(false);
       const data = await response.json();
-      setClientSecret(data.client_secret);
+      console.log("data ", data)
+      setClientSecret(data.data.clientSecret);
+      console.log("data ", data)
       // alert("Vui lòng xác nhận thanh toán");
     } else {
       console.log("khong co gi trong error");
@@ -176,14 +178,14 @@ function Cart() {
       // xu ly lay doi amount moi san pham
       const product_amounts = {};
       cartItems.forEach((item) => {
-        const id = item.id_branch_product_color;
+        const id = item.branchProductColorId;
         product_amounts[id] = product_amounts[id] ? product_amounts[id] + 1 : 1;
       });
       // lay ngay thang dat hang
       var current_datetime = new Date();
       var formatted_date = current_datetime.toISOString();
 
-      fetch("https://localhost:8000/home/checkout-succeed", {
+      fetch("https://localhost:7242/order/checkout-succeed", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -216,6 +218,7 @@ function Cart() {
       navigate("/succeed-order");
     }
   };
+  console.log("danh sách san pham cart",filteredCartItems)
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
       <div className="container py-5 h-100">
@@ -270,7 +273,7 @@ function Cart() {
                                     {product.name} , {product.currentColor}
                                   </h5>
                                   <p className="small mb-0">
-                                    {product.RAM} , {product.ROM}
+                                    {product.ram} , {product.rom}
                                   </p>
                                 </div>
                               </div>
@@ -299,7 +302,7 @@ function Cart() {
                                 <div style={{ width: 80 }}>
                                   <h5 className="mb-0 sum_price_item">
                                     {totalPriceProduct(
-                                      product.id_product_color
+                                      product.productColorId
                                     ).toLocaleString("vi-VN", {
                                       style: "currency",
                                       currency: "VND",
@@ -311,7 +314,7 @@ function Cart() {
                                     className="fas fa-trash-alt remove_item_card_in_cart"
                                     onClick={() =>
                                       handleRemoveProduct(
-                                        product.id_product_color
+                                        product.productColorId
                                       )
                                     }
                                   ></i>

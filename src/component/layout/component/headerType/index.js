@@ -182,13 +182,13 @@ function HeaderType() {
           <div className="type_of_price">
             <h6>Chọn theo mức giá</h6>
             <VerticalMenu>
-              <Link className="menu_item" to={"/search/0/5000000/1"}>
+              <Link className="menu_item" to={"/search/0/5000000/0"}>
                 Dưới 5 triệu
               </Link>
-              <Link className="menu_item" to={"/search/5000000/15000000/1"}>
+              <Link className="menu_item" to={"/search/5000000/15000000/0"}>
                 Từ 5 - 15 triệu
               </Link>
-              <Link className="menu_item" to={"/search/15000000/150000000/1"}>
+              <Link className="menu_item" to={"/search/15000000/150000000/0"}>
                 Từ 15 triệu trở lên
               </Link>
             </VerticalMenu>
@@ -258,13 +258,13 @@ function HeaderType() {
           <div className="type_of_price">
             <h6>Chọn theo mức giá</h6>
             <VerticalMenu>
-              <Link className="menu_item" to={"/search/0/10000000/2"}>
+              <Link className="menu_item" to={"/search/0/10000000/1"}>
                 Dưới 10 triệu
               </Link>
-              <Link className="menu_item" to={"/search/10000000/20000000/2"}>
+              <Link className="menu_item" to={"/search/10000000/20000000/1"}>
                 Từ 10 - 20 triệu
               </Link>
-              <Link className="menu_item" to={"/search/20000000/2000000000/2"}>
+              <Link className="menu_item" to={"/search/20000000/2000000000/1"}>
                 Trên 20 triệu
               </Link>
             </VerticalMenu>
