@@ -12,7 +12,7 @@ function Comments({ idProduct }) {
 
   useEffect(() => {
     // http://localhost:3001/comments-product/${idProduct}
-    fetch(`https://localhost:8000/home/comments/${idProduct}`)
+    fetch(`https://localhost:7242/product/comments/${idProduct}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -37,7 +37,7 @@ function Comments({ idProduct }) {
       console.log("khong co user");
       alert("XIn vui lòng đăng nhập");
     } else {
-      fetch(`https://localhost:8000/home/comment/${idProduct}/${user.id}`, {
+      fetch(`https://localhost:7242/product/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function Comments({ idProduct }) {
         body: JSON.stringify({
           contentComment: commentInput,
           idProductId: idProduct,
-          idUserId: user.id,
+          idUserId: user.userId,
           idReply: null,
         }),
         mode: "cors",
@@ -54,7 +54,7 @@ function Comments({ idProduct }) {
         .then((response) => response.json())
         .then((data) => {
           if (data.id) {
-            fetch(`https://localhost:8000/home/comments/${idProduct}`)
+            fetch(`https://localhost:7242/product/comments/${idProduct}`)
               .then((response) => response.json())
               .then((data) => {
                 console.log(data);
@@ -65,7 +65,7 @@ function Comments({ idProduct }) {
               .finally(() => scrollBottom());
           }
         })
-        .catch((error) => {});
+        .catch((error) => { });
     }
   }
 
@@ -120,7 +120,7 @@ function Comments({ idProduct }) {
       .then((response) => response.json())
       .then((data) => {
         if (data.id) {
-          fetch(`https://localhost:8000/home/comments/${idProduct}`)
+          fetch(`https://localhost:7242/product/comments/${idProduct}`)
             .then((response) => response.json())
             .then((data) => {
               console.log(data);
@@ -131,7 +131,7 @@ function Comments({ idProduct }) {
             .finally();
         }
       })
-      .catch((error) => {});
+      .catch((error) => { });
   }
 
   function handleDeleteClick(idComment) {
@@ -152,7 +152,7 @@ function Comments({ idProduct }) {
             if (!response.ok) {
               throw new Error("Network response was not ok");
             }
-            fetch(`https://localhost:8000/home/comments/${idProduct}`)
+            fetch(`https://localhost:7242/product/comments/${idProduct}`)
               .then((response) => response.json())
               .then((data) => {
                 console.log(data);
