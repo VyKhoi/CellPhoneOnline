@@ -103,23 +103,23 @@ function Comments({ idProduct }) {
     }
     console.log("oke  :", commentInput, idProduct, user.id, idReply);
 
-    fetch(`https://localhost:8000/home/comment/${idProduct}/${user.id}`, {
+    fetch(`https://localhost:7242/product/comment`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        contentComment: commentInput,
-        idProductId: idProduct,
-        idUserId: user.id,
-        idReply: idReply,
+        ContentComment: commentInput,
+        ProductId: idProduct,
+        UserId: user.userId,
+        Reply: idReply,
       }),
       mode: "cors",
       credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.id) {
+        if (data.data) {
           fetch(`https://localhost:7242/product/comments/${idProduct}`)
             .then((response) => response.json())
             .then((data) => {
@@ -145,7 +145,7 @@ function Comments({ idProduct }) {
       confirmButtonText: "Xóa",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://localhost:8000/home/delete/comment/${idComment}`, {
+        fetch(`https://localhost:7242/product/delete/comment/${idComment}`, {
           method: "DELETE",
         })
           .then((response) => {
@@ -197,7 +197,7 @@ function Comments({ idProduct }) {
                     <br />
                     <p>{comment.contentComment}</p>
 
-                    {user && user.role_id === "manager" ? (
+                    {user && user.userRoles[0] === "manager" ? (
                       <Fragment>
                         <i
                           className="fas fa-trash-alt reply_comment_icon"
@@ -216,7 +216,7 @@ function Comments({ idProduct }) {
                     ) : null}
                   </div>
 
-                  {user.role_id == "manager" ? (
+                  {user.userRoles[0] == "manager" ? (
                     <div
                       className="text-justify darker mt-4 float-right comment_box comment_reply_box box_input_reply replyComment"
                       style={{ padding: 0, display: "none" }}

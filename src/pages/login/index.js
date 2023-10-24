@@ -8,6 +8,14 @@ import { useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../component/userLogin/userlogin";
 import { useNavigate } from "react-router-dom";
+import firebaseApp from "./firebase";
+import {
+  FacebookAuthProvider,
+  getAuth,
+  GoogleAuthProvider,
+  OAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 function Login({ myref }) {
   // const showLogin = useRef(null);
   const navigate = useNavigate();
@@ -15,8 +23,9 @@ function Login({ myref }) {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
 
+  const auth = getAuth(firebaseApp);
   const [checkLogin, setCheckLogin] = useState(1);
-
+  const googleProvider = new GoogleAuthProvider();
   function handleSubmit(event) {
     console.log({ username, password });
 
@@ -32,16 +41,16 @@ function Login({ myref }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        
-        console.log("data",data)
+        console.log("data", data);
 
         let user_curent = data.data; //dôi tuong
-        
-        console.log("JSON.parse(",data.data)
 
-        localStorage.setItem("user", JSON.stringify(data.data)); // luu vao local json
-        setUser(user_curent);
+        console.log("JSON.parse(", data.data);
 
+        if (data.data != null) {
+          localStorage.setItem("user", JSON.stringify(data.data)); // luu vao local json
+          setUser(user_curent);
+        }
         console.log("user trong context ", user);
 
         handleRegister();
@@ -69,6 +78,51 @@ function Login({ myref }) {
       return;
     }
   }
+
+  const STORAGE_KEY = {
+    ACCOUNT: "account",
+    USERINFO: "FCMService",
+    SOCIAL: "social",
+    ACCESS_TOKEN: "accessToken",
+  };
+  const handleSocialLogin = (type, providerI) => {
+    signInWithPopup(auth, providerI)
+      .then(({ user }) => {
+        user.getIdToken().then(async (accesssToken) => {
+          const response = await fetch(
+            "https://localhost:7242/api/v1/auth/loginsocial",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                accesssToken: accesssToken,
+              }),
+            }
+          );
+          const data = await response.json();
+          console.log("sau khi login with google ", data);
+
+          let user_curent = data.data; //dôi tuong
+
+          console.log("JSON.parse(", data.data);
+  
+          if (data.data != null) {
+            localStorage.setItem("user", JSON.stringify(data.data)); // luu vao local json
+            setUser(user_curent);
+          }
+          console.log("user trong context ", user);
+  
+          handleRegister();
+          setCheckLogin(1);
+          console.log("accestoken ne ", accesssToken);
+        });
+      })
+      .catch(() => {
+        console.log("login.message.failure");
+      });
+  };
   return (
     <Fragment>
       <Container className="container_login_box d-block">
@@ -139,6 +193,9 @@ function Login({ myref }) {
                       Đăng Nhập
                     </button>
                   </form>
+                  <button onClick={() => handleSocialLogin(2, googleProvider)}>
+                    GG
+                  </button>
                 </div>
               </div>
             </div>

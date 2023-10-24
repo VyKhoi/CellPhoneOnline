@@ -11,9 +11,10 @@ const OrderLookup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await axios.get(
-      `https://localhost:8000/home/order_lookup/${phone}/`
+      `https://localhost:7242/product/home/order_lookup/${phone}/`
     );
-    setOrders(res.data);
+    console.log(res.data.data);
+    setOrders(res.data.data);
     console.log("danh sach order", orders);
   };
 
@@ -44,20 +45,19 @@ const OrderLookup = () => {
       </Form>
       <div className="order-list-container">
         {orders.map((order) => {
-          const uniqueProducts = order.product_Detail.filter(
+          const uniqueProducts = order.productDetail.filter(
             (product, index, self) =>
               index ===
               self.findIndex(
-                (p) =>
-                  p.id_branch_product_color === product.id_branch_product_color
+                (p) => p.branchProductColorID === product.branchProductColorID
               )
           );
 
           console.log(uniqueProducts, "o day");
           return (
             <div key={order.id} className="order-item">
-              <p>Mã đơn hàng : {order.order_ID}</p>
-              <p>Tổng giá trị đơn hàng : {order.toltal_Price}</p>
+              <p>Mã đơn hàng : {order.orderID}</p>
+              <p>Tổng giá trị đơn hàng : {order.toltalPrice}</p>
               <p>Ngày đặt hàng : {order.orderDate}</p>
 
               <p>Các sản phẩm đặt mua</p>
@@ -66,7 +66,7 @@ const OrderLookup = () => {
                   <div key={index}>
                     <hr></hr>
                     <p>
-                      tên sản phẩm : {value.Name} , {value.nameColor}
+                      tên sản phẩm : {value.name} , {value.nameColor}
                     </p>
                     <p>số lượng : {value.quantity}</p>
                     <p>đơn giá : {value.unitPrice}</p>
@@ -76,12 +76,12 @@ const OrderLookup = () => {
               <hr></hr>
               <p style={{ color: "#0173b3", fontSize: "15px" }}>
                 Trạng thái đơn hàng :
-                {order.Status == 2 ? (
+                {order.status == 2 ? (
                   <span style={{ color: "#04ab00" }}>
                     "đang được giao" <FontAwesomeIcon icon={faTruck} />
                   </span>
                 ) : null}
-                {order.Status == 1 ? (
+                {order.status == 1 ? (
                   <span style={{ color: "#a02300" }}>
                     "đã đặt hàng đang chờ xử lý"{" "}
                     <i class="fa-regular fa-clock"></i>
