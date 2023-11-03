@@ -197,7 +197,7 @@ function Comments({ idProduct }) {
                     <br />
                     <p>{comment.contentComment}</p>
 
-                    {user && user.userRoles[0] === "manager" ? (
+                    {user && user.userRoles != null &&  user.userRoles[0] === "manager" ? (
                       <Fragment>
                         <i
                           className="fas fa-trash-alt reply_comment_icon"
@@ -216,7 +216,7 @@ function Comments({ idProduct }) {
                     ) : null}
                   </div>
 
-                  {user.userRoles[0] == "manager" ? (
+                  {user.userRoles != null &&   user.userRoles[0] == "manager" ? (
                     <div
                       className="text-justify darker mt-4 float-right comment_box comment_reply_box box_input_reply replyComment"
                       style={{ padding: 0, display: "none" }}
