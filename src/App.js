@@ -7,7 +7,7 @@ import Home from "./pages/home";
 
 import CartIcon from "./component/layout/component/iconCart";
 
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext,  } from "react";
 import CountContext from "./component/counterCart/countContext";
 
 import Cart from "./pages/cart";
@@ -16,7 +16,7 @@ import Detail_Of_Product from "./pages/detailOfProduct";
 
 import SignUp from "./pages/signUp";
 import OrderLookup from "./pages/orderLookup";
-import { Routes, Route, Link, redirect } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import PageProductCellphone from "./pages/pageProductCellphone/indext";
 import PageProductLaptop from "./pages/pageProductLaptop/indext";
 import CartContext from "./component/cart/CartContext";
@@ -42,6 +42,7 @@ function App() {
   const { cartItems } = useContext(CartContext);
 
   const { count, setCount } = useContext(CountContext);
+  
   function add() {
     setCount(count + 1);
   }
@@ -52,6 +53,7 @@ function App() {
   function clear() {
     localStorage.clear();
   }
+
   return (
     <div className="App">
       <Header></Header>
