@@ -13,6 +13,19 @@ import { TypeOfProductProvider } from "./component/typeOfProduct/context";
 import { SearchProvider } from "./component/searchKeyWord/searchKeyWord";
 import UserContextProvider from "./component/userLogin/userlogin";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/firebase-messaging-sw.js')
+      .then((registration) => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      })
+      .catch((err) => {
+        console.error('ServiceWorker registration failed: ', err);
+      });
+  });
+}
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>

@@ -7,7 +7,7 @@ import Home from "./pages/home";
 
 import CartIcon from "./component/layout/component/iconCart";
 
-import React, { useContext,  } from "react";
+import React, { useContext, useState } from "react";
 import CountContext from "./component/counterCart/countContext";
 
 import Cart from "./pages/cart";
@@ -30,6 +30,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import SucceedPage from "./pages/cart/succeed";
 import FalsePage from "./pages/cart/flasePage";
 import Chat from "./chat";
+import PushNotification from "./component/pushNotification";
+
 
 const stripePromise = loadStripe(
   "pk_test_51Mm6CAJTSCX72rEN5WIHfvOYH1gdryjkcMjvkpsD3qXvXH61iMYBB0EnlsLZ3cM8ZgbSKaSgVEd1gVUpeXFfXtjM000UU5faQ7"
@@ -54,11 +56,14 @@ function App() {
     localStorage.clear();
   }
 
+
+
   return (
     <div className="App">
+   
+
       <Header></Header>
-      {/* <button onClick={watchCart}> xem san pham cart</button>
-      <button onClick={clear}>clear</button> */}
+    
 
       <Routes>
         <Route
@@ -86,18 +91,14 @@ function App() {
         <Route path="/succeed-order" element={<SucceedPage />} />
         <Route path="/false-order" element={<FalsePage />} />
 
-        {/* <Route
-          path="/checkout/"
-          element={
-            <Elements stripe={stripePromise}>
-              <CheckoutForm />
-            </Elements>
-          }
-        /> */}
+       
         <Route
           path="/order_lookup"
           element={<OrderLookup></OrderLookup>}
         ></Route>
+
+        <Route  path="/push"
+          element={<PushNotification></PushNotification>}> </Route>
       </Routes>
 
       <Link to={"/cart"}>
