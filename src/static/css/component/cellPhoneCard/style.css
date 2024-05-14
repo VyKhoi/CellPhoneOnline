@@ -251,7 +251,7 @@
 }
 
 .cellPhoneCard {
-    background-color: red;
+    background-color: rgb(255, 255, 255);
 }
 
 .see_infor_product {
@@ -264,6 +264,8 @@
     width: 100%;
     height: 100%;
     background-color: rgb(217, 217, 216);
+    min-height: 256px;
+    object-fit: cover; /* hoặc fill */
 }
 
 .price {

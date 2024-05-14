@@ -36,8 +36,6 @@ function Login({ myref }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
-      mode: "cors",
-      credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {

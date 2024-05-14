@@ -4,14 +4,15 @@ import { getApps, initializeApp } from "firebase/app";
 export const publicValidKey =
   "BC2AMFwQBpmcdwOGu0f8T67Al8p-jvFpdR_8wYGL7McMRDAjw2ZvdJHPuodTz_Frl8Hidm12QMHEA6Z32Br0gqw";
 
+
   export const firebaseConfig = {
-    apiKey: "AIzaSyAxTt3s1XGLl_JkVNsH6HLkK8uS6Iqn-7E",
-    authDomain: "sellphones-d51ff.firebaseapp.com",
-    projectId: "sellphones-d51ff",
-    storageBucket: "sellphones-d51ff.appspot.com",
-    messagingSenderId: "37098088720",
-    appId: "1:37098088720:web:5dab7f07a93aa6ab525d95",
-    measurementId: "G-586YQ66ZCX"
+    apiKey: "AIzaSyB3Nfh13CVElgxYC0muoqeYz1XFkKBHt3Q",
+    authDomain: "sellphones-47798.firebaseapp.com",
+    projectId: "sellphones-47798",
+    storageBucket: "sellphones-47798.appspot.com",
+    messagingSenderId: "113521639631",
+    appId: "1:113521639631:web:d3802b37c1990eb610b7ba",
+    measurementId: "G-2KDY9KSX49"
   };
 
 // Initialize Firebase

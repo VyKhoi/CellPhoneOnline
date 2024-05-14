@@ -48,8 +48,6 @@ function Comments({ idProduct }) {
           idUserId: user.userId,
           idReply: null,
         }),
-        mode: "cors",
-        credentials: "include",
       })
         .then((response) => response.json())
         .then((data) => {
@@ -114,8 +112,7 @@ function Comments({ idProduct }) {
         UserId: user.userId,
         Reply: idReply,
       }),
-      mode: "cors",
-      credentials: "include",
+
     })
       .then((response) => response.json())
       .then((data) => {

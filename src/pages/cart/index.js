@@ -17,6 +17,8 @@ function Cart() {
   const [isLoading, setIsLoading] = useState(false);
   // thong tin form
   const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   // check dat hang
@@ -24,6 +26,9 @@ function Cart() {
 
   const handleCustomerNameChange = (event) => {
     setCustomerName(event.target.value);
+  };
+  const handleCustomerEmailChange = (event) => {
+    setCustomerEmail(event.target.value);
   };
 
   const handlePhoneNumberChange = (event) => {
@@ -129,8 +134,19 @@ function Cart() {
     console.log("bien error dang luu ", error);
 
     if (!error) {
+      
       setIsLoading(true);
-      console.log("no có nhảy vào if");
+      console.log("data dang gui",  JSON.stringify({
+        amount: totalPrice(), // Thay đổi số tiền tương ứng với giá trị sản phẩm
+        products: [...cartItems],
+        customer: {
+          name: customerName,
+          deliveryPhone: phoneNumber,
+          deliveryAddress: address,
+          EmailCustomer: customerEmail,
+        },
+      }));
+
       const response = await fetch("https://localhost:7242/order/checkout", {
         method: "POST",
         headers: {
@@ -143,6 +159,7 @@ function Cart() {
             name: customerName,
             deliveryPhone: phoneNumber,
             deliveryAddress: address,
+            emailCustomer: customerEmail,
           },
         }),
       });
@@ -196,6 +213,7 @@ function Cart() {
             name: customerName,
             deliveryPhone: phoneNumber,
             deliveryAddress: address,
+            emailCustomer: customerEmail,
           },
           products: [...cartItems],
           amountEachProduct: product_amounts,
@@ -365,6 +383,17 @@ function Cart() {
                               name="customerName"
                               value={customerName}
                               onChange={handleCustomerNameChange}
+                              required
+                              className="input-payment"
+                            />
+                          </div>
+                          <div>
+                            <label>Email khách hàng:</label>
+                            <input
+                              type="text"
+                              name="email"
+                              value={ customerEmail}
+                              onChange={handleCustomerEmailChange}
                               required
                               className="input-payment"
                             />
